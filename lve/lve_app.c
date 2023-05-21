@@ -1,4 +1,5 @@
 #include "lve_app.h"
+#include "lve_pipeline.h"
 #include "lve_window.h"
 #include <GLFW/glfw3.h>
 #include <stdio.h>
@@ -10,7 +11,16 @@ App App_new(const int w, const int h, const char *name) {
   if (win_status == EXIT_FAILURE) {
     printf("Failed to Start Window!\n");
   }
-  App result = {.width = w, .height = h, .window = window};
+
+  LvePipeline *pipeline =
+      LvePipeline_new("shaders/vertex.spv", "shaders/frag.spv");
+
+  App result = {
+      .width = w,
+      .height = h,
+      .window = window,
+      .pipeline = pipeline,
+  };
   return result;
 }
 int App_run(App app) {

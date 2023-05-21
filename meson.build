@@ -15,11 +15,14 @@ project(
 
 DEPS = [
   dependency('glfw3'),
-  dependency('cglm')
+  dependency('cglm'),
+  dependency('vulkan'),
 ]
 
 common_src = [
-  'common/common.c'
+  'common/common.c',
+  'common/files.c',
+  'common/strings.c',
 ]
 common = library(
   'common',
@@ -31,6 +34,7 @@ common = library(
 lve_src = [
   'lve/lve_window.c',
   'lve/lve_app.c',
+  'lve/lve_pipeline.c',
 ]
 
 lve = library(

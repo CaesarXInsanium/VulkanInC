@@ -1,6 +1,7 @@
 #include "lve_window.h"
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
+#include "common/common.h"
 
 int LveWindow_init(LveWindow **self, int h, int w, const char *name) {
   LveWindow *lve_window = (LveWindow *)malloc(sizeof(LveWindow));
@@ -24,6 +25,11 @@ int LveWindow_destroy(LveWindow *self) {
   return EXIT_SUCCESS;
 }
 
+void LveWindow_createSurface(LveWindow *self, VkInstance instance,
+                             VkSurfaceKHR *surface) {
+  PANIC_ASSERT("Failed to Create VulkanSurface",
+        glfwCreateWindowSurface(instance, self->window, NULL, surface));
+}
 int LveWindow_shouldClose(LveWindow *self) {
   return glfwWindowShouldClose(self->window);
 }
