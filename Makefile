@@ -1,18 +1,10 @@
-BUILD_DIR=build
-BIN=$(BUILD_DIR)/vkvk
+CC=/usr/bin/gcc
+CFLAGS=-std=gnu18 -Wall -Werror
+LDFLAGS=-lglfw -lcglm -lvulkan
 
-all: $(BUILD_DIR)
-	./compile_shaders
-	meson compile -C $(BUILD_DIR)
+LVE=lve
+APP=src
+BIN=bin
 
-$(BUILD_DIR):
-	meson setup $(BUILD_DIR)
-
-run: all
-	./$(BIN)	
-
-debug: all
-	gdb $(BIN)
-
-clean:
-	rm -rf $(BUILD_DIR)
+lve_SOURCES= $(wildcard $(LVE)/**.c)
+vk_SOURCES= $(wildcard $(APP)/**.c)

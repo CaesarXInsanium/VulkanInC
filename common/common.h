@@ -22,8 +22,9 @@ typedef struct ArrayList {
   size_t data_size;
   void *data;
 } ArrayList;
-#endif
 
 // if expression is false then program will crash
 void PANIC_ASSERT(const char *message, int expression);
 #define PRINT_POINTER(pointer) (printf("Pointer: %p\n",(void *)pointer))
+
+#endif

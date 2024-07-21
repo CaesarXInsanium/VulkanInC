@@ -17,6 +17,7 @@ VkApplicationInfo vkappinfo(const char *name) {
 }
 VkInstanceCreateInfo vkinstanceinfo(const char *app_name) {
   VkInstanceCreateInfo result;
+  memset(&result, 0,sizeof(VkInstance));
   result.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
   VkApplicationInfo info = vkappinfo(app_name);
   result.pApplicationInfo = &info;
@@ -28,6 +29,7 @@ VkInstanceCreateInfo vkinstanceinfo(const char *app_name) {
   result.enabledExtensionCount = glfw_extension_count;
   result.ppEnabledLayerNames = glfw_extensions;
   result.enabledLayerCount = 0;
+  result.ppEnabledLayerNames = NULL;
   return result;
 }
 
