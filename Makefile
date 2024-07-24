@@ -1,10 +1,19 @@
-CC=/usr/bin/gcc
-CFLAGS=-std=gnu18 -Wall -Werror
-LDFLAGS=-lglfw -lcglm -lvulkan
+all: compile  shaders/frag.spv shaders/vertex.spv
+	fd --extension c --extension h | ctags -
 
-LVE=lve
-APP=src
-BIN=bin
+compile: build
+	meson compile -C $^
 
-lve_SOURCES= $(wildcard $(LVE)/**.c)
-vk_SOURCES= $(wildcard $(APP)/**.c)
+build:
+	mkdir $@
+	meson setup $@
+
+shaders/frag.spv: shaders/frag.glsl
+	glslc -o $@ -fshader-stage=frag $^
+shaders/vertex.spv: shaders/vertex.glsl
+	glslc -o $@ -fshader-stage=vertex $^
+
+clean:
+	rm -rf build
+	rm shaders/frag.spv
+	rm shaders/vertex.spv

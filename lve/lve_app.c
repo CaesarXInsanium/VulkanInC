@@ -27,6 +27,11 @@ int App_run(App app) {
   printf("Window Pointer: %p\n", (void *)app.window);
   while (!LveWindow_shouldClose(app.window)) {
     glfwPollEvents();
+    
+    if(GLFW_PRESS == glfwGetKey(app.window->window, GLFW_KEY_ESCAPE)){
+      puts("Escape Key Pressed. Exiting");
+      glfwSetWindowShouldClose(app.window->window, GLFW_TRUE);
+    }
   }
   return EXIT_SUCCESS;
 }
