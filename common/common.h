@@ -25,6 +25,7 @@ typedef struct ArrayList {
 
 // if expression is false then program will crash
 void PANIC_ASSERT(const char *message, int expression);
+void PANIC(const char *message);
 #define PRINT_POINTER(pointer) (printf("Pointer: %p\n",(void *)pointer))
 
 #endif

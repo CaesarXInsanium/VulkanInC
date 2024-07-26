@@ -5,8 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <GLFW/glfw3.h>
+// vulkan header has to be included before GLFW
 #include <vulkan/vulkan.h>
+#include <GLFW/glfw3.h>
 #include "common/common.h"
 #include "common/strings.h"
 #include "common/files.h"
@@ -14,14 +15,18 @@
 
 typedef struct LvePipeline {
   VkInstance instance;
-  VkPhysicalDevice gpu;
+  VkPhysicalDevice physical_device;
   VkDevice logical_device;
-  VkPipeline vkpipeline;
+  VkQueue graphics_queue;
+  VkQueue present_queue;
+  VkSurfaceKHR surface;
   VkShaderModule vert_shader_module;
   VkShaderModule frag_shader_module;
+
+  VkPipeline vkpipeline;
 } LvePipeline;
 
-LvePipeline *LvePipeline_new(const char *vert_path, const char *frag_path);
+LvePipeline *LvePipeline_new(GLFWwindow *window, const char *vert_path, const char *frag_path);
 
 void LvePipeline_destroy(LvePipeline *self);
 

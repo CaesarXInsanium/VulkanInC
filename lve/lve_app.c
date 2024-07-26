@@ -13,7 +13,7 @@ App App_new(const int w, const int h, const char *name) {
   }
 
   LvePipeline *pipeline =
-      LvePipeline_new("shaders/vertex.spv", "shaders/frag.spv");
+      LvePipeline_new(window->window, "shaders/vertex.spv", "shaders/frag.spv");
 
   App result = {
       .width = w,

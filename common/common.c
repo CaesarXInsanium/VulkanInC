@@ -10,3 +10,8 @@ void PANIC_ASSERT(const char *message, int expression) {
     exit(EXIT_FAILURE);
   }
 }
+
+void PANIC(const char *message){
+  fputs(message, stderr);
+  exit(EXIT_FAILURE);
+}
